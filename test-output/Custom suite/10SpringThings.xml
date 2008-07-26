@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="10SpringThings" failures="0" tests="1" time="0.795" errors="0">
+  <properties/>
+  <testcase name="testTenInserts" time="0.014" classname="org.cinjug.dbtesting.StupidDAOTest"/>
+</testsuite>

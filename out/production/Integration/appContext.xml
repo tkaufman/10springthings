@@ -1,0 +1,35 @@
+<beans:beans xmlns="http://www.springframework.org/schema/integration"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:beans="http://www.springframework.org/schema/beans"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/integration
+        http://www.springframework.org/schema/integration/spring-integration-1.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-2.5.xsd">
+
+    <message-bus/>
+    <annotation-driven/>
+    <context:component-scan base-package="org.cinjug.integration"/>
+
+    <channel id="batchCancels"/>
+    <channel id="customerCancels" />
+    <channel id="creditCancels"/>
+    <channel id="customerRemovals"/>
+    <channel id="customerIds" />
+    <channel id="refundableCancels"/>
+
+    <handler-endpoint input-channel="refundableCancels" ref="billingService"
+                                        method="sendRefund" />
+
+    <handler-endpoint input-channel="creditCancels" ref="vendorService"
+                                         method="extractCancelledCustomer" output-channel="customerRemovals"/>
+
+    <handler-endpoint input-channel="customerRemovals" ref="vendorService"
+                      method="removeCustomer" output-channel="customerIds" />
+
+    <beans:bean id="generator" class="org.cinjug.integration.service.RandomCancellationGeneratorImpl">
+        <beans:property name="batchChannel" ref="batchCancels"/>
+    </beans:bean>
+</beans:beans>

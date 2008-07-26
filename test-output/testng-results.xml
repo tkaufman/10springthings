@@ -1,0 +1,44 @@
+<testng-results>
+  <reporter-output>
+  </reporter-output>
+  <suite name="Custom suite">
+    <groups>
+      <group name="integration">
+        <method signature="org.cinjug.dbtesting.StupidDAOTest.testTenInserts()" name="testTenInserts" class="org.cinjug.dbtesting.StupidDAOTest"/>
+      </group>
+      <group name="functional">
+        <method signature="org.cinjug.dbtesting.StupidDAOTest.testTenInserts()" name="testTenInserts" class="org.cinjug.dbtesting.StupidDAOTest"/>
+      </group>
+    </groups>
+    <test name="10SpringThings">
+      <class name="org.cinjug.dbtesting.StupidDAOTest">
+        <test-method status="PASS" signature="springTestContextBeforeTestMethod(java.lang.reflect.Method)" name="springTestContextBeforeTestMethod" is-config="true" duration-ms="309" started-at="2008-07-21T18:35:20Z" finished-at="2008-07-21T18:35:21Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void org.cinjug.dbtesting.StupidDAOTest.testTenInserts()]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="springTestContextAfterTestMethod(java.lang.reflect.Method)" name="springTestContextAfterTestMethod" is-config="true" duration-ms="9" started-at="2008-07-21T18:35:21Z" finished-at="2008-07-21T18:35:21Z">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[public void org.cinjug.dbtesting.StupidDAOTest.testTenInserts()]]>
+              </value>
+            </param>
+          </params>
+        </test-method>
+        <test-method status="PASS" signature="springTestContextPrepareTestInstance()" name="springTestContextPrepareTestInstance" is-config="true" duration-ms="426" started-at="2008-07-21T18:35:20Z" finished-at="2008-07-21T18:35:20Z">
+        </test-method>
+        <test-method status="PASS" signature="checkRowCountInTx()" name="checkRowCountInTx" is-config="true" duration-ms="1" started-at="2008-07-21T18:35:21Z" finished-at="2008-07-21T18:35:21Z">
+        </test-method>
+        <test-method status="PASS" signature="insertRowAndStoreCountInTx()" name="insertRowAndStoreCountInTx" is-config="true" duration-ms="29" started-at="2008-07-21T18:35:21Z" finished-at="2008-07-21T18:35:21Z">
+        </test-method>
+        <test-method status="PASS" signature="testTenInserts()" name="testTenInserts" duration-ms="14" started-at="2008-07-21T18:35:21Z" finished-at="2008-07-21T18:35:21Z">
+        </test-method>
+      </class>
+    </test>
+  </suite>
+</testng-results>

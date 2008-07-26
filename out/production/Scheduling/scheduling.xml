@@ -1,0 +1,63 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+
+    <bean id="reminderService"
+        class="org.cinjug.scheduling.SimpleReminderService">
+        <property name="todos">
+            <list>
+                <value>Tout Spring's Goodness</value>
+                <value>Polish Rod Johnson Bobblehead</value>
+                <value>Download Spring Batch</value>
+            </list>
+        </property>
+    </bean>
+
+	<bean id="reminderJob"
+		class="org.springframework.scheduling.quartz.MethodInvokingJobDetailFactoryBean">
+		<property name="targetObject" ref="reminderService" />
+		<property name="targetMethod" value="outputThingsToDo" />
+		
+		<!-- Uncomment the element below if multiple concurrent versions of this job is a no-no
+			<property name="concurrent" value="false" />
+		-->
+
+	</bean>
+
+	<bean id="simpleTrigger"
+		class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<!-- job declared above -->
+		<property name="jobDetail" ref="reminderJob" />
+		<!-- 10 seconds -->
+		<property name="startDelay" value="10000" />
+		<!-- repeat every 20 seconds -->
+		<property name="repeatInterval" value="20000" />
+	</bean>
+
+	<bean id="cronTrigger"
+		class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="reminderJob" />
+		<!-- run every morning at 6 AM -->
+		<property name="cronExpression" value="0 0 6 * * ?" />
+	</bean>
+
+	<!--
+		Wouldn't this be much easier?
+		
+		<sched:cron-job
+		target-bean="reminderJob"
+		target-method="logThingsToDo"
+		cron-expression="0 0 6 * * ?" />
+	-->
+
+	<bean
+		class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="triggers">
+			<list>
+				<ref bean="cronTrigger" />
+				<ref bean="simpleTrigger" />
+			</list>
+		</property>
+	</bean>
+</beans>
